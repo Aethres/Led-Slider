@@ -46,6 +46,7 @@
 #include "cybsp.h"
 #include "cycfg.h"
 #include "cycfg_capsense.h"
+#include "stdio.h"
 
 
 /*******************************************************************************
@@ -108,6 +109,7 @@ static void measure_cp(void);
 int main(void)
 {
     cy_rslt_t result = CY_RSLT_SUCCESS;
+    cy_stc_scb_uart_context_t CYBSP_UART_context;
 
     /* Initialize the device and board peripherals */
     result = cybsp_init();
@@ -117,6 +119,10 @@ int main(void)
     {
         CY_ASSERT(CY_ASSERT_FAILED);
     }
+
+    /* Configure and enable the UART peripheral */
+    Cy_SCB_UART_Init(CYBSP_UART_HW, &CYBSP_UART_config, &CYBSP_UART_context);
+    Cy_SCB_UART_Enable(CYBSP_UART_HW);
 
     /* Enable global interrupts */
     __enable_irq();
@@ -134,7 +140,7 @@ int main(void)
     /* Start the first scan */
     Cy_CapSense_ScanAllSlots(&cy_capsense_context);
 
-//    uint16_t asd = cy_capsense_tuner.position->x;
+    char slider_value[40];
 //    uint16_t aaa = 100;
 
     (void) Cy_TCPWM_PWM_Init(PWM_HW, PWM_NUM, &PWM_config);
@@ -150,6 +156,9 @@ int main(void)
             /* Process all widgets */
             Cy_CapSense_ProcessAllWidgets(&cy_capsense_context);
 
+
+            sprintf(slider_value, "Slider position value: %d\r\n",cy_capsense_tuner.position->x);
+            Cy_SCB_UART_PutString(CYBSP_UART_HW, slider_value);
             /* Turns LED ON/OFF based on Slider status */
         	led_control();
 
@@ -278,8 +287,10 @@ static void initialize_capsense_tuner(void)
 *******************************************************************************/
 static void led_control(void)
 {
-
-     Cy_TCPWM_PWM_SetCompare0(PWM_HW, PWM_NUM, cy_capsense_tuner.position->x);
+	if(cy_capsense_tuner.position->x > 25)
+	    Cy_TCPWM_PWM_SetCompare0(PWM_HW, PWM_NUM, cy_capsense_tuner.position->x);
+	else
+		Cy_TCPWM_PWM_SetCompare0(PWM_HW, PWM_NUM, 0);
 
 }
 
