@@ -53,6 +53,7 @@
 * Macros
 *******************************************************************************/
 #define CAPSENSE_MSC0_INTR_PRIORITY      (3u)
+#define CAPSENSE_MSC1_INTR_PRIORITY      (3u)
 #define CY_ASSERT_FAILED                 (0u)
 #define MSC_CAPSENSE_WIDGET_INACTIVE     (0u)
 
@@ -70,20 +71,28 @@
 *******************************************************************************/
 cy_stc_scb_ezi2c_context_t ezi2c_context;
 
+bool isON = true;
+uint32_t previousSliderValue;
+
 /* Variables for Sensor Cp measurement */
 #if CY_CAPSENSE_BIST_EN
 uint32_t sensor_id;
 uint32_t sense_cap[NUMBER_OF_SLIDER_SEGMENTS];
 uint32_t shield_cap;
+uint32_t button0_cp = 0, button1_cp = 0;
+cy_en_capsense_bist_status_t button0_cp_status, button1_cp_status;
 cy_en_capsense_bist_status_t sensor_meas_status[NUMBER_OF_SLIDER_SEGMENTS];
 cy_en_capsense_bist_status_t shield_meas_status;
+
 #endif
 
 /*******************************************************************************
 * Function Prototypes
 *******************************************************************************/
+static void update_isON();;
 static void initialize_capsense(void);
 static void capsense_msc0_isr(void);
+static void capsense_msc1_isr(void);
 static void ezi2c_isr(void);
 static void initialize_capsense_tuner(void);
 static void led_control(void);
@@ -140,7 +149,7 @@ int main(void)
     /* Start the first scan */
     Cy_CapSense_ScanAllSlots(&cy_capsense_context);
 
-    char slider_value[40];
+    char slider_value[50];
 //    uint16_t aaa = 100;
 
     (void) Cy_TCPWM_PWM_Init(PWM_HW, PWM_NUM, &PWM_config);
@@ -157,8 +166,13 @@ int main(void)
             Cy_CapSense_ProcessAllWidgets(&cy_capsense_context);
 
 
-            sprintf(slider_value, "Slider position value: %d\r\n",cy_capsense_tuner.position->x);
+            sprintf(slider_value, "Slider position value: %d, isOn: %s\r\n",cy_capsense_tuner.position->x,
+            		isON ? "true":"false");
             Cy_SCB_UART_PutString(CYBSP_UART_HW, slider_value);
+
+
+
+        	update_isON();
             /* Turns LED ON/OFF based on Slider status */
         	led_control();
 
@@ -170,6 +184,17 @@ int main(void)
             Cy_CapSense_ScanAllSlots(&cy_capsense_context);
 
         }
+    }
+}
+
+static void update_isON(){
+    if(MSC_CAPSENSE_WIDGET_INACTIVE != Cy_CapSense_IsWidgetActive(CY_CAPSENSE_BUTTON0_WDGT_ID, &cy_capsense_context))
+    {
+    		isON = true;
+    }
+    if(MSC_CAPSENSE_WIDGET_INACTIVE != Cy_CapSense_IsWidgetActive(CY_CAPSENSE_BUTTON1_WDGT_ID, &cy_capsense_context))
+    {
+    		isON = false;
     }
 }
 
@@ -193,6 +218,13 @@ static void initialize_capsense(void)
         .intrPriority = CAPSENSE_MSC0_INTR_PRIORITY,
     };
 
+    /* CapSense interrupt configuration MSC 1 */
+    const cy_stc_sysint_t capsense_msc1_interrupt_config =
+    {
+        .intrSrc = CY_MSC1_IRQ,
+        .intrPriority = CAPSENSE_MSC1_INTR_PRIORITY,
+    };
+
     /* Capture the MSC HW block and initialize it to the default state. */
     status = Cy_CapSense_Init(&cy_capsense_context);
 
@@ -209,6 +241,11 @@ static void initialize_capsense(void)
         Cy_SysInt_Init(&capsense_msc0_interrupt_config, capsense_msc0_isr);
         NVIC_ClearPendingIRQ(capsense_msc0_interrupt_config.intrSrc);
         NVIC_EnableIRQ(capsense_msc0_interrupt_config.intrSrc);
+
+        /* Initialize CapSense interrupt for MSC 1 */
+        Cy_SysInt_Init(&capsense_msc1_interrupt_config, capsense_msc1_isr);
+        NVIC_ClearPendingIRQ(capsense_msc1_interrupt_config.intrSrc);
+        NVIC_EnableIRQ(capsense_msc1_interrupt_config.intrSrc);
 
         /* Initialize the CapSense firmware modules. */
         status = Cy_CapSense_Enable(&cy_capsense_context);
@@ -234,6 +271,11 @@ static void initialize_capsense(void)
 static void capsense_msc0_isr(void)
 {
     Cy_CapSense_InterruptHandler(CY_MSC0_HW, &cy_capsense_context);
+}
+
+static void capsense_msc1_isr(void)
+{
+    Cy_CapSense_InterruptHandler(CY_MSC1_HW, &cy_capsense_context);
 }
 
 /*******************************************************************************
@@ -287,10 +329,12 @@ static void initialize_capsense_tuner(void)
 *******************************************************************************/
 static void led_control(void)
 {
-	if(cy_capsense_tuner.position->x > 25)
+	if(cy_capsense_tuner.position->x > 25 && isON)
 	    Cy_TCPWM_PWM_SetCompare0(PWM_HW, PWM_NUM, cy_capsense_tuner.position->x);
 	else
 		Cy_TCPWM_PWM_SetCompare0(PWM_HW, PWM_NUM, 0);
+
+
 
 }
 
@@ -328,6 +372,17 @@ static void measure_cp(void)
                                 &cy_capsense_context);
         sense_cap[sensor_id] = cy_capsense_context.ptrWdConfig[CY_CAPSENSE_LINEARSLIDER0_WDGT_ID].ptrEltdCapacitance[sensor_id];
     }
+
+    button0_cp_status = Cy_CapSense_MeasureCapacitanceSensorElectrode(CY_CAPSENSE_BUTTON0_WDGT_ID,
+                                                  CY_CAPSENSE_BUTTON0_SNS0_ID, &cy_capsense_context);
+    button0_cp = cy_capsense_context.ptrWdConfig[CY_CAPSENSE_BUTTON0_WDGT_ID].ptrEltdCapacitance[CY_CAPSENSE_BUTTON0_SNS0_ID];
+
+    button1_cp_status = Cy_CapSense_MeasureCapacitanceSensorElectrode(CY_CAPSENSE_BUTTON1_WDGT_ID,
+                                                  CY_CAPSENSE_BUTTON1_SNS0_ID, &cy_capsense_context);
+    button1_cp = cy_capsense_context.ptrWdConfig[CY_CAPSENSE_BUTTON1_WDGT_ID].ptrEltdCapacitance[CY_CAPSENSE_BUTTON1_SNS0_ID];
+
+
+
     Cy_CapSense_SetInactiveElectrodeState(CY_CAPSENSE_SNS_CONNECTION_SHIELD, 
                         CY_CAPSENSE_BIST_SHIELD_GROUP, &cy_capsense_context);
     shield_meas_status = Cy_CapSense_MeasureCapacitanceShieldElectrode(SHIELD_MEAS_SKIP_CH_MASK,

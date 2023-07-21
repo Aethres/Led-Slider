@@ -116,8 +116,127 @@
                         <Param id="inFlash" value="true"/>
                     </Personality>
                 </Block>
+                <Block location="cpuss[0].dmac[0].chan[4]">
+                    <Personality template="m0s8dmac" version="1.0">
+                        <Param id="CHANNEL_PRIORITY" value="3"/>
+                        <Param id="DESCR_SELECTION" value="CY_DMAC_DESCRIPTOR_PING"/>
+                        <Param id="DESCR_PING_DATA_CNT" value="1"/>
+                        <Param id="DESCR_PING_DATA_TRANSFER_WIDTH" value="WordToWord"/>
+                        <Param id="DESCR_PING_SRC_INCREMENT" value="true"/>
+                        <Param id="DESCR_PING_DST_INCREMENT" value="true"/>
+                        <Param id="DESCR_PING_TRIG_DEACT" value="CY_DMAC_RETRIG_IM"/>
+                        <Param id="DESCR_PING_INVALID" value="false"/>
+                        <Param id="DESCR_PING_INTERRUPT" value="true"/>
+                        <Param id="DESCR_PING_PREEMPTABLE" value="true"/>
+                        <Param id="DESCR_PING_FLIPPING" value="true"/>
+                        <Param id="DESCR_PING_TRIG_TYPE" value="CY_DMAC_SINGLE_ELEMENT"/>
+                        <Param id="DESCR_PONG_DATA_CNT" value="1"/>
+                        <Param id="DESCR_PONG_DATA_TRANSFER_WIDTH" value="WordToWord"/>
+                        <Param id="DESCR_PONG_SRC_INCREMENT" value="true"/>
+                        <Param id="DESCR_PONG_DST_INCREMENT" value="true"/>
+                        <Param id="DESCR_PONG_TRIG_DEACT" value="CY_DMAC_RETRIG_IM"/>
+                        <Param id="DESCR_PONG_INVALID" value="false"/>
+                        <Param id="DESCR_PONG_INTERRUPT" value="true"/>
+                        <Param id="DESCR_PONG_PREEMPTABLE" value="true"/>
+                        <Param id="DESCR_PONG_FLIPPING" value="true"/>
+                        <Param id="DESCR_PONG_TRIG_TYPE" value="CY_DMAC_SINGLE_ELEMENT"/>
+                        <Param id="inFlash" value="true"/>
+                    </Personality>
+                </Block>
+                <Block location="cpuss[0].dmac[0].chan[5]">
+                    <Personality template="m0s8dmac" version="1.0">
+                        <Param id="CHANNEL_PRIORITY" value="3"/>
+                        <Param id="DESCR_SELECTION" value="CY_DMAC_DESCRIPTOR_PING"/>
+                        <Param id="DESCR_PING_DATA_CNT" value="1"/>
+                        <Param id="DESCR_PING_DATA_TRANSFER_WIDTH" value="WordToWord"/>
+                        <Param id="DESCR_PING_SRC_INCREMENT" value="true"/>
+                        <Param id="DESCR_PING_DST_INCREMENT" value="true"/>
+                        <Param id="DESCR_PING_TRIG_DEACT" value="CY_DMAC_RETRIG_IM"/>
+                        <Param id="DESCR_PING_INVALID" value="false"/>
+                        <Param id="DESCR_PING_INTERRUPT" value="true"/>
+                        <Param id="DESCR_PING_PREEMPTABLE" value="true"/>
+                        <Param id="DESCR_PING_FLIPPING" value="true"/>
+                        <Param id="DESCR_PING_TRIG_TYPE" value="CY_DMAC_SINGLE_ELEMENT"/>
+                        <Param id="DESCR_PONG_DATA_CNT" value="1"/>
+                        <Param id="DESCR_PONG_DATA_TRANSFER_WIDTH" value="WordToWord"/>
+                        <Param id="DESCR_PONG_SRC_INCREMENT" value="true"/>
+                        <Param id="DESCR_PONG_DST_INCREMENT" value="true"/>
+                        <Param id="DESCR_PONG_TRIG_DEACT" value="CY_DMAC_RETRIG_IM"/>
+                        <Param id="DESCR_PONG_INVALID" value="false"/>
+                        <Param id="DESCR_PONG_INTERRUPT" value="true"/>
+                        <Param id="DESCR_PONG_PREEMPTABLE" value="true"/>
+                        <Param id="DESCR_PONG_FLIPPING" value="true"/>
+                        <Param id="DESCR_PONG_TRIG_TYPE" value="CY_DMAC_SINGLE_ELEMENT"/>
+                        <Param id="inFlash" value="true"/>
+                    </Personality>
+                </Block>
+                <Block location="cpuss[0].dmac[0].chan[6]">
+                    <Personality template="m0s8dmac" version="1.0">
+                        <Param id="CHANNEL_PRIORITY" value="3"/>
+                        <Param id="DESCR_SELECTION" value="CY_DMAC_DESCRIPTOR_PING"/>
+                        <Param id="DESCR_PING_DATA_CNT" value="1"/>
+                        <Param id="DESCR_PING_DATA_TRANSFER_WIDTH" value="WordToWord"/>
+                        <Param id="DESCR_PING_SRC_INCREMENT" value="true"/>
+                        <Param id="DESCR_PING_DST_INCREMENT" value="true"/>
+                        <Param id="DESCR_PING_TRIG_DEACT" value="CY_DMAC_RETRIG_IM"/>
+                        <Param id="DESCR_PING_INVALID" value="false"/>
+                        <Param id="DESCR_PING_INTERRUPT" value="true"/>
+                        <Param id="DESCR_PING_PREEMPTABLE" value="true"/>
+                        <Param id="DESCR_PING_FLIPPING" value="true"/>
+                        <Param id="DESCR_PING_TRIG_TYPE" value="CY_DMAC_SINGLE_ELEMENT"/>
+                        <Param id="DESCR_PONG_DATA_CNT" value="1"/>
+                        <Param id="DESCR_PONG_DATA_TRANSFER_WIDTH" value="WordToWord"/>
+                        <Param id="DESCR_PONG_SRC_INCREMENT" value="true"/>
+                        <Param id="DESCR_PONG_DST_INCREMENT" value="true"/>
+                        <Param id="DESCR_PONG_TRIG_DEACT" value="CY_DMAC_RETRIG_IM"/>
+                        <Param id="DESCR_PONG_INVALID" value="false"/>
+                        <Param id="DESCR_PONG_INTERRUPT" value="true"/>
+                        <Param id="DESCR_PONG_PREEMPTABLE" value="true"/>
+                        <Param id="DESCR_PONG_FLIPPING" value="true"/>
+                        <Param id="DESCR_PONG_TRIG_TYPE" value="CY_DMAC_SINGLE_ELEMENT"/>
+                        <Param id="inFlash" value="true"/>
+                    </Personality>
+                </Block>
+                <Block location="cpuss[0].dmac[0].chan[7]">
+                    <Personality template="m0s8dmac" version="1.0">
+                        <Param id="CHANNEL_PRIORITY" value="3"/>
+                        <Param id="DESCR_SELECTION" value="CY_DMAC_DESCRIPTOR_PING"/>
+                        <Param id="DESCR_PING_DATA_CNT" value="1"/>
+                        <Param id="DESCR_PING_DATA_TRANSFER_WIDTH" value="WordToWord"/>
+                        <Param id="DESCR_PING_SRC_INCREMENT" value="true"/>
+                        <Param id="DESCR_PING_DST_INCREMENT" value="true"/>
+                        <Param id="DESCR_PING_TRIG_DEACT" value="CY_DMAC_RETRIG_IM"/>
+                        <Param id="DESCR_PING_INVALID" value="false"/>
+                        <Param id="DESCR_PING_INTERRUPT" value="true"/>
+                        <Param id="DESCR_PING_PREEMPTABLE" value="true"/>
+                        <Param id="DESCR_PING_FLIPPING" value="true"/>
+                        <Param id="DESCR_PING_TRIG_TYPE" value="CY_DMAC_SINGLE_ELEMENT"/>
+                        <Param id="DESCR_PONG_DATA_CNT" value="1"/>
+                        <Param id="DESCR_PONG_DATA_TRANSFER_WIDTH" value="WordToWord"/>
+                        <Param id="DESCR_PONG_SRC_INCREMENT" value="true"/>
+                        <Param id="DESCR_PONG_DST_INCREMENT" value="true"/>
+                        <Param id="DESCR_PONG_TRIG_DEACT" value="CY_DMAC_RETRIG_IM"/>
+                        <Param id="DESCR_PONG_INVALID" value="false"/>
+                        <Param id="DESCR_PONG_INTERRUPT" value="true"/>
+                        <Param id="DESCR_PONG_PREEMPTABLE" value="true"/>
+                        <Param id="DESCR_PONG_FLIPPING" value="true"/>
+                        <Param id="DESCR_PONG_TRIG_TYPE" value="CY_DMAC_SINGLE_ELEMENT"/>
+                        <Param id="inFlash" value="true"/>
+                    </Personality>
+                </Block>
                 <Block location="csd[0].csd[0]">
                     <Alias value="CYBSP_CSD"/>
+                </Block>
+                <Block location="ioss[0].port[0].pin[3]">
+                    <Personality template="m0s8pin" version="1.0">
+                        <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
+                        <Param id="initialState" value="1"/>
+                        <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
+                        <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
+                        <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
+                        <Param id="inFlash" value="true"/>
+                        <Param id="portLevelConfig" value="false"/>
+                    </Personality>
                 </Block>
                 <Block location="ioss[0].port[0].pin[4]">
                     <Alias value="CYBSP_DEBUG_UART_RX"/>
@@ -172,6 +291,18 @@
                 <Block location="ioss[0].port[10].pin[5]">
                     <Alias value="CYBSP_D9"/>
                     <Alias value="CYBSP_J3_2"/>
+                </Block>
+                <Block location="ioss[0].port[11].pin[2]">
+                    <Alias value="CYBSP_CSX_BTN0_TX"/>
+                    <Personality template="m0s8pin" version="1.0">
+                        <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
+                        <Param id="initialState" value="1"/>
+                        <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
+                        <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
+                        <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
+                        <Param id="inFlash" value="true"/>
+                        <Param id="portLevelConfig" value="false"/>
+                    </Personality>
                 </Block>
                 <Block location="ioss[0].port[11].pin[3]">
                     <Alias value="CYBSP_SHIELD0"/>
@@ -523,11 +654,11 @@
                 </Block>
                 <Block location="msc[0].msc[0]">
                     <Alias value="CYBSP_MSC0"/>
-                    <Personality template="m0s8mscv3" version="1.0">
+                    <Personality template="m0s8mscv3" version="1.1">
                         <Param id="mscInstanceName" value="MSC0"/>
-                        <Param id="operationMode" value="CS_DMA"/>
+                        <Param id="operationMode" value="CPU"/>
                         <Param id="isConnectionLegacy" value="false"/>
-                        <Param id="SensorCount" value="9"/>
+                        <Param id="SensorCount" value="10"/>
                         <Param id="CapacitorCount" value="2"/>
                         <Param id="SensorName0" value="Shield0"/>
                         <Param id="SensorName1" value="LinearSlider0_Sns0"/>
@@ -538,11 +669,13 @@
                         <Param id="SensorName6" value="LinearSlider0_Sns5"/>
                         <Param id="SensorName7" value="LinearSlider0_Sns6"/>
                         <Param id="SensorName8" value="LinearSlider0_Sns7"/>
+                        <Param id="SensorName9" value="Button0_Sns0"/>
                         <Param id="CapacitorName0" value="Cmod1"/>
                         <Param id="CapacitorName1" value="Cmod2"/>
                     </Personality>
                 </Block>
                 <Block location="msc[0].msc_superblock[0]">
+                    <Alias value="CYBSP_CapSense"/>
                     <Personality template="m0s8mscv3superblock" version="1.0">
                         <Param id="hwMaster" value="false"/>
                         <Param id="commMaster" value="false"/>
@@ -551,6 +684,19 @@
                         <Param id="chipOffset" value="0"/>
                         <Param id="CapSenseConfigurator" value="0"/>
                         <Param id="CapSenseTuner" value="0"/>
+                    </Personality>
+                </Block>
+                <Block location="msc[1].msc[0]">
+                    <Alias value="CYBSP_MSC1"/>
+                    <Personality template="m0s8mscv3" version="1.1">
+                        <Param id="mscInstanceName" value="MSC1"/>
+                        <Param id="operationMode" value="CPU"/>
+                        <Param id="isConnectionLegacy" value="false"/>
+                        <Param id="SensorCount" value="1"/>
+                        <Param id="CapacitorCount" value="2"/>
+                        <Param id="SensorName0" value="Button1_Sns0"/>
+                        <Param id="CapacitorName0" value="Cmod1"/>
+                        <Param id="CapacitorName1" value="Cmod2"/>
                     </Personality>
                 </Block>
                 <Block location="peri[0].div_16[0]">
@@ -595,7 +741,6 @@
                         <Param id="inFlash" value="true"/>
                     </Personality>
                 </Block>
-                <Block location="scb[1]"/>
                 <Block location="scb[2]">
                     <Alias value="CYBSP_UART"/>
                     <Personality template="m0s8mxscb3uart" version="1.0">
@@ -650,7 +795,7 @@
                     <Personality template="m0s8sysclocks" version="1.0"/>
                 </Block>
                 <Block location="srss[0].clock[0].hfclk[0]">
-                    <Personality template="m0s8hfclk" version="1.0">
+                    <Personality template="m0s8hfclk" version="2.0">
                         <Param id="sourceClock" value="IMO"/>
                         <Param id="divider" value="1"/>
                     </Personality>
@@ -736,6 +881,34 @@
                     <Port name="msc[0].msc[0].tr_rd_req_in[0]"/>
                 </Net>
                 <Net>
+                    <Port name="cpuss[0].dmac[0].chan[4].tr_in[0]"/>
+                    <Port name="cpuss[0].dmac[0].chan[5].tr_out[0]"/>
+                </Net>
+                <Net>
+                    <Port name="cpuss[0].dmac[0].chan[4].tr_out[0]"/>
+                    <Port name="msc[1].msc[0].tr_wr_req_in[0]"/>
+                </Net>
+                <Net>
+                    <Port name="cpuss[0].dmac[0].chan[5].tr_in[0]"/>
+                    <Port name="msc[1].msc[0].tr_wr_req_out[0]"/>
+                </Net>
+                <Net>
+                    <Port name="cpuss[0].dmac[0].chan[6].tr_in[0]"/>
+                    <Port name="msc[1].msc[0].tr_rd_req_out[0]"/>
+                </Net>
+                <Net>
+                    <Port name="cpuss[0].dmac[0].chan[6].tr_out[0]"/>
+                    <Port name="cpuss[0].dmac[0].chan[7].tr_in[0]"/>
+                </Net>
+                <Net>
+                    <Port name="cpuss[0].dmac[0].chan[7].tr_out[0]"/>
+                    <Port name="msc[1].msc[0].tr_rd_req_in[0]"/>
+                </Net>
+                <Net>
+                    <Port name="ioss[0].port[0].pin[3].analog[0]"/>
+                    <Port name="msc[1].msc[0].s_pad[0]"/>
+                </Net>
+                <Net>
                     <Port name="ioss[0].port[0].pin[4].digital_inout[0]"/>
                     <Port name="scb[2].uart_rx[0]"/>
                 </Net>
@@ -792,20 +965,33 @@
                     <Port name="msc[0].msc[0].s_pad[1]"/>
                 </Net>
                 <Net>
+                    <Port name="ioss[0].port[7].pin[0].analog[0]"/>
+                    <Port name="msc[1].msc[0].cmod1pad[0]"/>
+                </Net>
+                <Net>
+                    <Port name="ioss[0].port[7].pin[1].analog[0]"/>
+                    <Port name="msc[1].msc[0].cmod2pad[0]"/>
+                </Net>
+                <Net>
                     <Port name="ioss[0].port[7].pin[3].digital_out[0]"/>
                     <Port name="tcpwm[0].cnt[1].line_compl[0]"/>
+                </Net>
+                <Net>
+                    <Port name="ioss[0].port[11].pin[2].analog[0]"/>
+                    <Port name="msc[0].msc[0].s_pad[9]"/>
                 </Net>
                 <Net>
                     <Port name="ioss[0].port[11].pin[4].analog[0]"/>
                     <Port name="msc[0].msc[0].s_pad[5]"/>
                 </Net>
                 <Net>
-                    <Port name="msc[0].msc[0].clock_msc[0]"/>
-                    <Port name="peri[0].div_16[0].clk[0]"/>
-                </Net>
-                <Net>
                     <Port name="peri[0].div_16[2].clk[0]"/>
                     <Port name="scb[2].clock[0]"/>
+                </Net>
+                <Net>
+                    <Port name="msc[0].msc[0].clock_msc[0]"/>
+                    <Port name="msc[1].msc[0].clock_msc[0]"/>
+                    <Port name="peri[0].div_16[0].clk[0]"/>
                 </Net>
                 <Net>
                     <Port name="peri[0].div_16[1].clk[0]"/>
